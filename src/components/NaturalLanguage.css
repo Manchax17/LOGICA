@@ -1,0 +1,42 @@
+.natural-language {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.analysis-content {
+  margin-top: 16px;
+}
+
+.truth-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.truth-table th {
+  text-align: center;
+  padding: 12px;
+  background: var(--panel);
+  color: var(--text);
+}
+
+.truth-table td {
+  text-align: center;
+  padding: 10px;
+  border: 1px solid var(--border);
+}
+
+.truth-table td.true {
+  background: rgba(124, 217, 146, 0.1);
+  color: var(--accent-2);
+}
+
+.truth-table td.false {
+  background: rgba(255, 107, 107, 0.1);
+  color: var(--danger);
+}

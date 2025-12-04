@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tabla de Verdad: P ∧ Q ∧ R</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="header">
+        <h1>Tabla de verdad: P ∧ Q ∧ R</h1>
+        <p>Tabla de verdad completa mostrando todas las combinaciones de P, Q, R y su conjunción. P∧Q∧R es Verdadero solo cuando las tres proposiciones son Verdaderas.</p>
+      </header>
+
+      <section class="input-section">
+        <h3>Ingresa tus proposiciones en los campos de texto</h3>
+        <div class="inputs">
+          <div class="statement" data-symbol="P">
+            <label for="p-text" class="symbol">P</label>
+            <input id="p-text" type="text" placeholder="Enter proposition P (e.g., 'Hoy es Martes')" value="Hoy es Martes" />
+            <label class="truth">
+              <input id="p-truth" type="checkbox" checked />
+              <span>True</span>
+            </label>
+          </div>
+
+          <div class="statement" data-symbol="Q">
+            <label for="q-text" class="symbol">Q</label>
+            <input id="q-text" type="text" placeholder="Enter proposition Q (e.g., 'Mañana es Miércoles')" value="Mañana es Miércoles" />
+            <label class="truth">
+              <input id="q-truth" type="checkbox" checked />
+              <span>True</span>
+            </label>
+          </div>
+
+          <div class="statement" data-symbol="R">
+            <label for="r-text" class="symbol">R</label>
+            <input id="r-text" type="text" placeholder="Enter proposition R (e.g., 'Ayer fue Lunes')" value="Ayer fue Lunes" />
+            <label class="truth">
+              <input id="r-truth" type="checkbox" checked />
+              <span>True</span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <section class="pattern-info">
+        <div class="pattern">
+          <h3>Truth Table Patterns:</h3>
+          <div class="pattern-row">
+            <span class="symbol">P:</span>
+            <span class="pattern-text">V V V V F F F F</span>
+            <span class="pattern-desc">(4 True, 4 False)</span>
+          </div>
+          <div class="pattern-row">
+            <span class="symbol">Q:</span>
+            <span class="pattern-text">V V F F V V F F</span>
+            <span class="pattern-desc">(2 True, 2 False, repeat)</span>
+          </div>
+          <div class="pattern-row">
+            <span class="symbol">R:</span>
+            <span class="pattern-text">V F V F V F V F</span>
+            <span class="pattern-desc">(alternating True/False)</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="truth-table" aria-label="Truth table">
+        <div class="table-header">
+          <h2>Truth Table</h2>
+          <div class="summary">
+            <span id="true-count" class="badge true">0</span>
+            <span class="muted">True conjunctions out of 8</span>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Row</th>
+                <th>P</th>
+                <th>Q</th>
+                <th>R</th>
+                <th>P ∧ Q ∧ R</th>
+              </tr>
+            </thead>
+            <tbody id="truth-table-body">
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="conjunction-display">
+        <h3>Conjunción en Español</h3>
+        <div class="conjunction-content">
+          <div class="proposition-display">
+            <div class="prop-item">
+              <span class="prop-symbol">P =</span>
+              <span class="prop-text">"<span id="display-p-text">Hoy es Martes</span>"</span>
+              <span class="prop-value" id="display-p-value">V</span>
+            </div>
+            <div class="prop-item">
+              <span class="prop-symbol">Q =</span>
+              <span class="prop-text">"<span id="display-q-text">Mañana es Miércoles</span>"</span>
+              <span class="prop-value" id="display-q-value">V</span>
+            </div>
+            <div class="prop-item">
+              <span class="prop-symbol">R =</span>
+              <span class="prop-text">"<span id="display-r-text">Ayer fue Lunes</span>"</span>
+              <span class="prop-value" id="display-r-value">V</span>
+            </div>
+          </div>
+          <div class="conjunction-result">
+            <span id="spanish-conjunction">"Hoy es Martes" Y "Mañana es Miércoles" Y "Ayer fue Lunes"</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="verification">
+        <h3>Verificación de la Conjunción</h3>
+        <div class="verification-content">
+          <div class="result-display">
+            <div class="result-item">
+              <span class="result-label">Resultado:</span>
+              <span id="conjunction-result" class="result-badge false">FALSO</span>
+            </div>
+            <div class="result-item">
+              <span class="result-label">Lenguaje Lógico:</span>
+              <span id="logical-language" class="logical-text">"Hoy es Martes" ∧ "Mañana es Miércoles" ∧ "Ayer fue Lunes"</span>
+            </div>
+          </div>
+          <div class="explanation">
+            <p id="explanation-text">La conjunción es <strong>FALSA</strong> porque no todas las proposiciones son verdaderas.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="analysis">
+        <h3>Análisis</h3>
+        <div class="analysis-content">
+          <p>La conjunción P ∧ Q ∧ R es <strong>Verdadera</strong> solo cuando todas las tres proposiciones P, Q, y R son <strong>Verdaderas</strong>.</p>
+          <p>De la tabla de verdad anterior, podemos ver que P ∧ Q ∧ R es Verdadera en <span id="analysis-count">0</span> de 8 combinaciones posibles.</p>
+          <div id="true-rows" class="true-rows"></div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <small>
+          Nota al pie: En lógica, una conjunción es verdadera solo cuando todas sus componentes son verdaderas.
+        </small>
+      </footer>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+  </html>
+
+

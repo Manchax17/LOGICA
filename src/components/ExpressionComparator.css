@@ -1,0 +1,118 @@
+.expression-comparator {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.title {
+  color: var(--accent);
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.input-section {
+  margin-bottom: 24px;
+}
+
+.expr-input {
+  margin-bottom: 16px;
+}
+
+.expr-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.op-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.op-buttons button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.op-buttons button:hover {
+  background: var(--accent-2);
+}
+
+.truth-tables {
+  display: flex;
+  gap: 24px;
+  justify-content: space-between;
+}
+
+.table-container {
+  flex: 1;
+}
+
+.truth-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.truth-table th {
+  text-align: center;
+  padding: 12px;
+  background: var(--panel);
+  color: var(--text);
+}
+
+.truth-table td {
+  text-align: center;
+  padding: 10px;
+  border: 1px solid var(--border);
+}
+
+.truth-table td.true {
+  background: rgba(124, 217, 146, 0.1);
+  color: var(--accent-2);
+}
+
+.truth-table td.false {
+  background: rgba(255, 107, 107, 0.1);
+  color: var(--danger);
+}
+
+.result-display {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.result-badge {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.result-badge.true {
+  background: rgba(124, 217, 146, 0.2);
+  color: var(--accent-2);
+}
+
+.result-badge.false {
+  background: rgba(255, 107, 107, 0.2);
+  color: var(--danger);
+}
+
+.error-message {
+  color: var(--danger);
+  font-size: 14px;
+  margin-top: 8px;
+}
