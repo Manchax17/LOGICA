@@ -10,18 +10,21 @@ export default function ExpressionComparator() {
   const [error, setError] = useState("");
   const [result, setResult] = useState(null);
 
+
+  // Diccionario de operadores lógicos
   const operators = [
-    { sym: "∧", title: "AND" },
-    { sym: "∨", title: "OR" },
-    { sym: "⊕", title: "XOR" },
-    { sym: "→", title: "IMPLIES" },
-    { sym: "↔", title: "IFF" },
-    { sym: "¬", title: "NOT" },
-    { sym: "(", title: "(" },
+    { sym: "∧", title: "AND" },    
+    { sym: "∨", title: "OR" },    
+    { sym: "⊕", title: "XOR" },  
+    { sym: "→", title: "IMPLIES" }, 
+    { sym: "↔", title: "IFF" },     
+    { sym: "¬", title: "NOT" },   
+    { sym: "(", title: "(" },     
     { sym: ")", title: ")" },
     { sym: "↑", title: "NAND" },
     { sym: "↓", title: "NOR" },
-  ]; // Added NAND and NOR
+    { sym: "⊙", title: "XNOR" },
+  ]; 
 
   const insertOperator = (op, target) => {
     if (target === 1) setExpr1((prev) => prev + op);

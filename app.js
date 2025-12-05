@@ -3,6 +3,13 @@
 
   /** DOM helpers */
   const $ = (sel) => document.querySelector(sel);
+  // Quick existence check: if the legacy DOM structure isn't present, stop.
+  // This prevents errors when running the React app or when files are loaded without the expected HTML.
+  if (!$("#truth-table-body")) {
+    // No legacy DOM found -> do nothing.
+    console.warn('Legacy app.js: expected DOM not found; skipping legacy script.');
+    return;
+  }
 
   // Input elements
   const pText = $("#p-text");

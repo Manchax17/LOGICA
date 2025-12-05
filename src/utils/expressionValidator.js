@@ -4,7 +4,7 @@
  * @returns {boolean} - True if the expression is valid, false otherwise.
  */
 export default function validateExpression(expression) {
-  const validCharacters = /^[A-Z∧∨⊕→↔¬↑↓()\s]+$/; // Added ↑ and ↓ to the regex
+  const validCharacters = /^[A-Z∧∨⊕→↔¬↑↓⊙()\s]+$/; // Added ↑, ↓ y ⊙ (XNOR) a la regex
   const balancedParentheses = (expr) => {
     let count = 0;
     for (const char of expr) {

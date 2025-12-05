@@ -6,26 +6,12 @@ import TruthTable from "./components/TruthTable";
 import NaturalLanguage from "./components/NaturalLanguage";
 import { parseExpression } from "./utils/expressionParser";
 import ExpressionComparator from "./components/ExpressionComparator";
-
-
+import LogicLawsDisplay from "./components/LogicLawsDisplay";
 
 // 🔹 Genera letras desde P en adelante
 function getNextLetter(index) {
   const startChar = "P".charCodeAt(0); // 80
   return String.fromCharCode(startChar + index);
-}
-
-// 🔹 Reemplaza los símbolos lógicos por expresiones JS válidas
-function toJS(expr) {
-  return expr
-    .replace(/¬/g, "!")
-    .replace(/∧/g, "&&")
-    .replace(/∨/g, "||")
-    .replace(/⊕/g, "!==")
-    .replace(/↔/g, "===")
-    .replace(/→/g, "=>")
-    //Las operaciones NAND y NOR se expandirán a operaciones booleanas de JS una vez que las variables se sustituyan por verdadero/falso.
-    ;
 }
 
 export default function App() {
@@ -34,27 +20,21 @@ export default function App() {
     { name: "Q", description: "Hace sol", value: true },
     { name: "R", description: "Es temprano", value: true },
   ]);
-
   const [expression, setExpression] = useState("(P↔Q)⊕R");
   const [error, setError] = useState("");
 
-  // Agregar proposición (letras desde P)
   const addProposition = () => {
-  if (propositions.length === 0) {
-    setPropositions([{ name: "P", description: "", value: true }]);
-    return;
-  }
-
-  // Obtener el último nombre alfabético
-  const lastName = propositions[propositions.length - 1].name;
-  const nextLetter = String.fromCharCode(lastName.charCodeAt(0) + 1);
-
-  setPropositions([
-    ...propositions,
-    { name: nextLetter, description: "", value: true },
-  ]);
-};
-
+    if (propositions.length === 0) {
+      setPropositions([{ name: "P", description: "", value: true }]);
+      return;
+    }
+    const lastName = propositions[propositions.length - 1].name;
+    const nextLetter = String.fromCharCode(lastName.charCodeAt(0) + 1);
+    setPropositions([
+      ...propositions,
+      { name: nextLetter, description: "", value: true },
+    ]);
+  };
 
   const updateProposition = (index, field, newValue) => {
     const copy = [...propositions];
@@ -68,20 +48,14 @@ export default function App() {
     setPropositions(copy);
   };
 
-  // 🔹 Generar tabla y subexpresiones
   const truthTable = useMemo(() => {
-    if (!expression.trim()) return [];
+    if (!expression || !expression.trim()) return { rows: [], expressions: [] };
     try {
-      const usedLetters = Array.from(
-        new Set(expression.match(/[A-Z]/g) || [])
-      );
-
-      const undefinedVars = usedLetters.filter(
-        (l) => !propositions.some((p) => p.name === l)
-      );
+      const usedLetters = Array.from(new Set(expression.match(/[A-Z]/g) || []));
+      const undefinedVars = usedLetters.filter((l) => !propositions.some((p) => p.name === l));
       if (undefinedVars.length > 0) {
         setError(`Las siguientes variables no están definidas: ${undefinedVars.join(", ")}`);
-        return [];
+        return { rows: [], expressions: [] };
       }
       setError("");
 
@@ -95,16 +69,10 @@ export default function App() {
         combinations.push(row);
       }
 
-      // 🔹 Detectar subexpresiones entre paréntesis (por partes)
-      const subMatches = Array.from(expression.matchAll(/\([^()]+\)/g)).map(
-        (m) => m[0]
-      );
+      const subMatches = Array.from(expression.matchAll(/\([^()]+\)/g)).map((m) => m[0]);
       const uniqueSubs = [...new Set(subMatches)];
-
-      // Última expresión es la completa
       const allExpressions = [...uniqueSubs, expression];
 
-      // 🔹 Evaluar cada combinación y subexpresión usando parseExpression (maneja correctamente ↑ y ↓)
       const rows = combinations.map((row) => {
         const resultRow = { ...row };
         for (let expr of allExpressions) {
@@ -121,7 +89,7 @@ export default function App() {
       return { rows, expressions: allExpressions };
     } catch (e) {
       setError("Error al evaluar la expresión.");
-      return [];
+      return { rows: [], expressions: [] };
     }
   }, [expression, propositions]);
 
@@ -165,7 +133,8 @@ export default function App() {
         />
         <NaturalLanguage expression={expression} propositions={propositions} />
         <ExpressionComparator propositions={propositions} />
- 
+        <LogicLawsDisplay />
+
         <footer className="footer">
           Desarrollado por Alexis, Diego y Daniel — React Logic System © 2025
         </footer>
@@ -173,3 +142,5 @@ export default function App() {
     </div>
   );
 }
+
+

@@ -30,7 +30,8 @@ export default function ExpressionInput({
     { sym: ")", title: ")" },
     { sym: "↑", title: "NAND" },
     { sym: "↓", title: "NOR" },
-  ]; // Se añadió NAND y NOR
+    { sym: "⊙", title: "XNOR" },
+  ]; 
 
   return (
     <div className="expr-bar">
